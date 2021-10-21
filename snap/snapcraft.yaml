@@ -1,0 +1,29 @@
+name: edgex-device-config
+base: core20
+version: 0.0.1
+summary: Device GPIO config provider
+description: |
+  This is an example snap to provide configuration files to an edgex-device-gpio snap.
+
+grade: stable
+confinement: strict
+
+slots:
+  device-gpio:
+    interface: content
+    source:
+      read: 
+        - $SNAP/config/device-gpio
+
+parts:
+  device-gpio:
+    plugin: dump
+    source: examples/device-gpio
+    override-build: |
+      TARGET=$SNAPCRAFT_PART_INSTALL/config/device-gpio
+      mkdir -p $TARGET
+      cp -vr res $TARGET/
+      cp -v  secrets-token.json $TARGET/
+      
+
+
