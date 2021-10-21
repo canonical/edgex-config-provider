@@ -22,6 +22,6 @@ network-bind              edgex-device-gpio:network-bind            :network-bin
 ```
 
 ## Debugging Notes
-* The exposed files can be accessed from the host at: `/snap/my-producer/config`
-* The mounted files will not be available on the host file system and trying to list `/var/snap/my-consumer/current/config` will not show anything. The files can be listed from inside the snap's shell environment (snap run --shell my-consumer). See https://askubuntu.com/a/841787/366811
+* The exposed files can be accessed from the host file system at `/snap/edgex-device-config/current/config/`
+* The mounted files will not be available on the host file system and trying to list `/var/snap/my-consumer/current/config` will not show anything. The files can be listed from inside the snap's shell environment (`snap run --shell my-consumer`). See https://askubuntu.com/a/841787/366811
 * The target directory defined on producer is mounted INSIDE (and not on) the target path in consumer's plug
