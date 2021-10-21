@@ -2,6 +2,9 @@
 This is an example config provider for EdgeX Device Snaps.
 The config files and secrets are provided as examples under `/examples` directory.
 
+## Create a config provider snap
+See [snap/snapcraft.yaml](snap/snapcraft.yaml)
+
 ## Connect to the provided slots
 The plugs of consumer snaps need to be manually connected to the slots provided by this snaps.
 The plugs stay connected during updates. 
