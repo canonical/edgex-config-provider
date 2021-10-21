@@ -18,10 +18,14 @@ $ sudo snap connect edgex-device-gpio:config edgex-device-config:device-gpio
 ```
 
 ```bash
-$ sudo snap connections | grep device-gpio
-content[config]           edgex-device-gpio:config                  edgex-device-config:device-gpio  manual
-network                   edgex-device-gpio:network                 :network                         -
-network-bind              edgex-device-gpio:network-bind            :network-bind                    -
+$ sudo snap connections edgex-device-gpio
+Interface        Plug                            Slot                                       Notes
+content          -                               edgex-device-gpio:edgex-secretstore-token  -
+content[config]  edgex-device-gpio:config        edgex-device-config:device-gpio            manual
+gpio             edgex-device-gpio:gpio          -                                          -
+network          edgex-device-gpio:network       :network                                   -
+network-bind     edgex-device-gpio:network-bind  :network-bind                              -
+                  -
 ```
 
 ## Debugging Notes
