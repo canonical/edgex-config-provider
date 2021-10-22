@@ -1,48 +1,57 @@
-name: edgex-device-config
+name: edgex-config-provider
 base: core20
-version: 0.0.1
-summary: Device services config provider
+
+version: example
+summary: Example EdgeX snaps config provider
 description: |
-  This is an example snap to provide configuration files to an edgex device service snaps
+  This is an example snap to provide configuration files to edgex service snaps.
 
 grade: stable
 confinement: strict
 
-# The consumer plugs can connect to these slots
+# The consumer plugs can connect to these slots.
+# Each source path get mounted as read-only directory/file
+#   inside the corresponding plug's target path.
 slots:
   device-gpio:
     interface: content
     source:
-      # The following directory gets mounted as read-only
-      #   inside the plug's target path
       read: 
-        - $SNAP/config/device-gpio
-  device-camera:
-    interface: content
-    source:
-      read: 
-        - $SNAP/config/device-camera
+        - $SNAP/device-gpio/config
+        - $SNAP/device-gpio/device-gpio
+  # device-camera:
+  #   interface: content
+  #   source:
+  #     read: 
+  #       - $SNAP/config/device-camera
 
-# These parts prepare the config files for each slot
+
+# These parts prepare the config files for slots
 parts:
   device-gpio:
-    # This example takes the source files from local file system
+    # This example takes source files from the local file system
     plugin: dump
     source: examples/device-gpio
     override-build: |
-      TARGET=$SNAPCRAFT_PART_INSTALL/config/device-gpio
-      mkdir -p $TARGET
-      cp -vr res $TARGET/
-      cp -v  secrets-token.json $TARGET/
+      SLOT_ROOT=$SNAPCRAFT_PART_INSTALL/device-gpio
+
+      # copy resources
+      mkdir -p $SLOT_ROOT/config/device-gpio
+      cp -vr res $SLOT_ROOT/config/device-gpio/res
+
+      # copy token
+      install -vDT secrets-token.json \
+        $SLOT_ROOT/device-gpio/secrets-token.json
+      
   
-  device-camera:
-    plugin: dump
-    source: examples/device-camera
-    override-build: |
-      TARGET=$SNAPCRAFT_PART_INSTALL/config/device-camera
-      mkdir -p $TARGET
-      cp -vr res $TARGET/
-      cp -v  secrets-token.json $TARGET/
+  # device-camera:
+  #   plugin: dump
+  #   source: examples/device-camera
+  #   override-build: |
+  #     TARGET=$SNAPCRAFT_PART_INSTALL/config/device-camera
+  #     mkdir -p $TARGET
+  #     cp -vr res $TARGET/
+  #     cp -v  secrets-token.json $TARGET/
       
 
 
