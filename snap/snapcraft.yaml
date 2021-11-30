@@ -17,8 +17,7 @@ slots:
     interface: content
     source:
       read: 
-        - $SNAP/app-service-configurable/res/http-export
-        - $SNAP/app-service-configurable/res/mqtt-export
+        - $SNAP/app-service-configurable/res
   device-mqtt:
     interface: content
     source:
