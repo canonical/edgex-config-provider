@@ -4,54 +4,32 @@ base: core20
 version: example
 summary: Example EdgeX snaps config provider
 description: |
-  This is an example snap to provide configuration files to edgex service snaps.
+  This is an example snap to provide configuration files to EdgeX service snaps.
 
 grade: stable
 confinement: strict
 
 # The consumer plugs can connect to these slots.
-# Each source path get mounted as read-only directory/file
+# Each source path get mounted as a read-only directory
 #   inside the corresponding plug's target path.
 slots:
-  device-gpio:
+  device-mqtt:
     interface: content
     source:
       read: 
-        - $SNAP/device-gpio/config
-        - $SNAP/device-gpio/device-gpio
-  # device-camera:
-  #   interface: content
-  #   source:
-  #     read: 
-  #       - $SNAP/config/device-camera
-
+        - $SNAP/device-mqtt/res
 
 # These parts prepare the config files for slots
 parts:
-  device-gpio:
+  device-mqtt:
     # This example takes source files from the local file system
     plugin: dump
-    source: examples/device-gpio
+    source: examples/device-mqtt
     override-build: |
-      SLOT_ROOT=$SNAPCRAFT_PART_INSTALL/device-gpio
+      TARGET=$SNAPCRAFT_PART_INSTALL/device-mqtt
 
-      # copy resources
-      mkdir -p $SLOT_ROOT/config/device-gpio
-      cp -vr res $SLOT_ROOT/config/device-gpio/res
-
-      # copy token
-      install -vDT secrets-token.json \
-        $SLOT_ROOT/device-gpio/secrets-token.json
-      
-  
-  # device-camera:
-  #   plugin: dump
-  #   source: examples/device-camera
-  #   override-build: |
-  #     TARGET=$SNAPCRAFT_PART_INSTALL/config/device-camera
-  #     mkdir -p $TARGET
-  #     cp -vr res $TARGET/
-  #     cp -v  secrets-token.json $TARGET/
+      mkdir -p $TARGET
+      cp -vr res $TARGET/res
       
 
 
