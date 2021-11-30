@@ -13,14 +13,29 @@ confinement: strict
 # Each source path get mounted as a read-only directory
 #   inside the corresponding plug's target path.
 slots:
+  app-service-configurable:
+    interface: content
+    source:
+      read: 
+        - $SNAP/app-service-configurable/res/http-export
+        - $SNAP/app-service-configurable/res/mqtt-export
   device-mqtt:
     interface: content
     source:
       read: 
         - $SNAP/device-mqtt/res
 
-# These parts prepare the config files for slots
+# Prepare the config files for slots
 parts:
+  app-service-configurable:
+    # This example takes source files from the local file system
+    plugin: dump
+    source: examples/app-service-configurable
+    override-build: |
+      TARGET=$SNAPCRAFT_PART_INSTALL/app-service-configurable
+
+      mkdir -p $TARGET
+      cp -vr res $TARGET/res
   device-mqtt:
     # This example takes source files from the local file system
     plugin: dump
@@ -30,6 +45,3 @@ parts:
 
       mkdir -p $TARGET
       cp -vr res $TARGET/res
-      
-
-
