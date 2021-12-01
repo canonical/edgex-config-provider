@@ -46,9 +46,12 @@ $ tree /snap/edgex-config-provider/current/device-mqtt/
 └── res
     ├── configuration.toml
     ├── devices
-    │   └── mqtt.test.device.toml
-    └── profiles
-        └── mqtt.test.device.profile.yml
+    │   └── mqtt.test.device.toml
+    ├── profiles
+    │   └── mqtt.test.device.profile.yml
+    └── README.md
+
+3 directories, 4 files
 ```
 
 ### List mounted files
@@ -59,5 +62,14 @@ To enter the shell environment of `device-mqtt` and list mounted paths:
 ```
 $ sudo snap run --shell edgex-device-mqtt.device-mqtt
 root@***# find /var/snap/edgex-device-mqtt/current/config
+/var/snap/edgex-device-mqtt/current/config
+/var/snap/edgex-device-mqtt/current/config/device-mqtt
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/README.md
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/configuration.toml
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/devices
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/devices/mqtt.test.device.toml
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/profiles
+/var/snap/edgex-device-mqtt/current/config/device-mqtt/res/profiles/mqtt.test.device.profile.yml
 ...
 ``` 
