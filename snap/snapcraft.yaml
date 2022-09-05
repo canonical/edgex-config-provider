@@ -44,14 +44,14 @@ parts:
       mkdir -p $TARGET
       cp -vr res $TARGET/res
   device-mqtt:
-    # This example takes source files from the local file system
+    # This example takes config files from a git repository, in this case, the upstream repo
     plugin: dump
-    source: examples/device-mqtt
+    source: https://github.com/edgexfoundry/device-mqtt-go.git
     override-build: |
       TARGET=$SNAPCRAFT_PART_INSTALL/device-mqtt
 
       mkdir -p $TARGET
-      cp -vr res $TARGET/res
+      cp -vr cmd/res $TARGET/res
   device-virtual:
     # This example takes source files from the local file system
     plugin: dump
