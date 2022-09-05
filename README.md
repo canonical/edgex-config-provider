@@ -12,7 +12,7 @@ To help understand how a provider can be setup to provide configurations to mult
 Build and install the snap:
 ```bash
 snapcraft
-sudo snap install ./edgex-config-provider_example_amd64.snap --dangerous
+sudo snap install ./edgex-config-provider-example_2.3_amd64.snap --dangerous
 ```
 
 ## Connect to the provided slots
@@ -24,12 +24,17 @@ The plugs stay connected during updates.
 In this example, the `device-config` plug from `edgex-device-mqtt` is being connected to
 the `device-mqtt` slot of this snap (i.e. `edgex-config-provider`):
 ```bash
-sudo snap connect edgex-device-mqtt:device-config edgex-config-provider:device-mqtt
+sudo snap connect edgex-device-mqtt:device-config edgex-config-provider-example:device-mqtt
+```
+
+For device virtual:
+```bash
+sudo snap connect edgex-device-virtual:device-virtual-config edgex-config-provider-example:device-virtual-config
 ```
 
 Check the connections:
 ```
-$ sudo snap connections edgex-config-provider
+$ sudo snap connections edgex-config-provider-example
 Interface               Plug                             Slot                               Notes
 content[device-config]  edgex-device-mqtt:device-config  edgex-config-provider:device-mqtt  manual
 ```

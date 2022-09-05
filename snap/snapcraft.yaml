@@ -1,10 +1,13 @@
-name: edgex-config-provider
+name: edgex-config-provider-example
 base: core20
 
-version: example
+version: "2.3"
 summary: Example EdgeX snaps config provider
 description: |
   This is an example snap to provide configuration files to EdgeX service snaps.
+
+  For source code and details, refer to:  
+  https://github.com/canonical/edgex-config-provider 
 
 grade: stable
 confinement: strict
@@ -23,6 +26,11 @@ slots:
     source:
       read: 
         - $SNAP/device-mqtt/res
+  device-virtual-config:
+    interface: content
+    source:
+      read: 
+        - $SNAP/device-virtual/res
 
 # Prepare the config files for slots
 parts:
@@ -41,6 +49,15 @@ parts:
     source: examples/device-mqtt
     override-build: |
       TARGET=$SNAPCRAFT_PART_INSTALL/device-mqtt
+
+      mkdir -p $TARGET
+      cp -vr res $TARGET/res
+  device-virtual:
+    # This example takes source files from the local file system
+    plugin: dump
+    source: examples/device-virtual
+    override-build: |
+      TARGET=$SNAPCRAFT_PART_INSTALL/device-virtual
 
       mkdir -p $TARGET
       cp -vr res $TARGET/res
