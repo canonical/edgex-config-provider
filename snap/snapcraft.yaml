@@ -16,12 +16,12 @@ confinement: strict
 # Each source path get mounted as a read-only directory
 #   inside the corresponding plug's target path.
 slots:
-  app-service-configurable:
+  app-service-configurable-config:
     interface: content
     source:
       read: 
         - $SNAP/app-service-configurable/res
-  device-mqtt:
+  device-mqtt-config:
     interface: content
     source:
       read: 
