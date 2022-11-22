@@ -16,16 +16,6 @@ confinement: strict
 # Each source path get mounted as a read-only directory
 #   inside the corresponding plug's target path.
 slots:
-  app-service-configurable-config:
-    interface: content
-    source:
-      read: 
-        - $SNAP/app-service-configurable/res
-  device-mqtt-config:
-    interface: content
-    source:
-      read: 
-        - $SNAP/device-mqtt/res
   device-virtual-config:
     interface: content
     source:
@@ -34,30 +24,19 @@ slots:
 
 # Prepare the config files for slots
 parts:
-  app-service-configurable:
-    # This example takes source files from the local file system
-    plugin: dump
-    source: examples/app-service-configurable
-    override-build: |
-      TARGET=$SNAPCRAFT_PART_INSTALL/app-service-configurable
-
-      mkdir -p $TARGET
-      cp -vr res $TARGET/res
-  device-mqtt:
-    # This example takes config files from a git repository, in this case, the upstream repo
-    plugin: dump
-    source: https://github.com/edgexfoundry/device-mqtt-go.git
-    override-build: |
-      TARGET=$SNAPCRAFT_PART_INSTALL/device-mqtt
-
-      mkdir -p $TARGET
-      cp -vr cmd/res $TARGET/res
   device-virtual:
-    # This example takes source files from the local file system
     plugin: dump
+    # Take config files from the local file system
     source: examples/device-virtual
+    # The config files can be pulled from a variety of sources.
+    # For example. to take config files from a git repository, i.e. the upstream repo:
+    # source: https://github.com/edgexfoundry/device-virtual-go.git
     override-build: |
       TARGET=$SNAPCRAFT_PART_INSTALL/device-virtual
 
       mkdir -p $TARGET
       cp -vr res $TARGET/res
+
+      # Change the startup message, for the sake of testing
+      $SNAPCRAFT_PROJECT_DIR/amend-startup-msg.sh $TARGET
+     
