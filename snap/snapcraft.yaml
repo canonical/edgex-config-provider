@@ -156,6 +156,8 @@ parts:
       TARGET=$SNAPCRAFT_PART_INSTALL/device-rfid-llrp
       mkdir -p $TARGET
       cp -vr cmd/res $TARGET/res
+      # add devices directory because it doesn't exist upstream
+      mkdir -p $TARGET/res/devices
       $SNAPCRAFT_PROJECT_DIR/amend-startup-msg.sh $TARGET
   device-snmp:
     plugin: dump
