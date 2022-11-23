@@ -21,16 +21,12 @@ The plugs stay connected during updates.
 
 **Note** - content interfaces from snaps installed from the Snap Store that have the same publisher connect automatically. For more information on snap content interfaces please refer to the snapcraft.io [Content Interface](https://snapcraft.io/docs/content-interface) documentation.
 
-In this example, the `device-config` plug from `edgex-device-mqtt` is being connected to
-the `device-mqtt` slot of this snap (i.e. `edgex-config-provider`):
-```bash
-sudo snap connect edgex-device-mqtt:device-config edgex-config-provider-example:device-mqtt
-```
-
-For device virtual:
+In this example, the `device-virtual-config` plug from 
+[`edgex-device-virtual`](https://snapcraft.io/edgex-device-virtual) snap is being connected to the **slot with the same name** of this snap (i.e. `edgex-config-provider`):
 ```bash
 sudo snap connect edgex-device-virtual:device-virtual-config edgex-config-provider-example:device-virtual-config
 ```
+Note that one of the conditions to have automatic connection is to have matching plug and slot names.
 
 Check the connections:
 ```
