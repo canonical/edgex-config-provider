@@ -27,3 +27,4 @@ jobs:
           snap: ${{needs.build.outputs.snap}}
 
       - run: go test -v ./test/suites/edgex-config-provider -run=TestConfigProvider/device-virtual
+
