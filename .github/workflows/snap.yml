@@ -1,0 +1,32 @@
+name: Snap Testing
+
+on:
+  pull_request:
+    branches: [ main ]
+  # allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and upload snap
+        id: build
+        uses: canonical/edgex-snap-testing/build@v2
+    outputs:
+      snap: ${{steps.build.outputs.snap}}
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and test snap
+        shell: bash
+        run: |
+          git clone https://github.com/canonical/edgex-snap-testing.git
+          go mod tidy
+          LOCAL_SNAP=${{needs.build.outputs.snap}} go test -v ./edgex-snap-testing/test/suites/edgex-config-provider -run=TestConfigProvider/device-virtual
+        
+
+          
+
