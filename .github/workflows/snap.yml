@@ -28,5 +28,4 @@ jobs:
           snap: ${{needs.build.outputs.snap}}
           go-args: -run=TestConfigProvider/device-virtual
       
-          
-
+      

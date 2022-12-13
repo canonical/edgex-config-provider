@@ -17,7 +17,7 @@ HealthCheckInterval = "10s"
 Host = "localhost"
 ServerBindAddr = ""  # blank value defaults to Service.Host value
 Port = 59900
-StartupMsg = "Configuration from config provider"
+StartupMsg = "CONFIG BY EXAMPLE PROVIDER"
 # MaxRequestSize limit the request body size in byte of put command
 MaxRequestSize = 0 # value 0 unlimit the request size.
 RequestTimeout = "5s"
