@@ -5,6 +5,6 @@
 
 path=$1
 
-find $path -type f -name 'configuration.toml' | xargs \
+find $path -type f -name 'configuration.yaml' | xargs \
     sed --in-place --regexp-extended \
     's/StartupMsg.*/StartupMsg="CONFIG BY EXAMPLE PROVIDER"/'
