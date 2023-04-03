@@ -7,4 +7,4 @@ path=$1
 
 find $path -type f -name 'configuration.yaml' | xargs \
     sed --in-place --regexp-extended \
-    's/StartupMsg.*/StartupMsg="CONFIG BY EXAMPLE PROVIDER"/'
+    's/StartupMsg.*/StartupMsg: Configuration from config provider/'
