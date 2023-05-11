@@ -20,3 +20,8 @@ MessageBus:
   Optional:
     ClientId: device-virtual
 
+Device:
+  # These have common values (currently), but must be here for service local env overrides to apply when customized
+  ProfilesDir: "./res/profiles"
+  DevicesDir: "./res/devices"
+
