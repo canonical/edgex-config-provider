@@ -5,4 +5,4 @@ The files are taken from https://github.com/edgexfoundry/device-virtual-go/tree/
 In this example following have been modified:
 - Device is modified to contain only `Random-Float-Device` to reduce the number of resources and auto events.
 - All unused profiles have been removed, leaving only `Random-Float-Device`.
-- The startup message has been modified for the sake of testing.
+- Startup message is set to `CONFIG BY EXAMPLE PROVIDER` for the sake of testing.
