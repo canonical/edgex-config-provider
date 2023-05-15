@@ -13,7 +13,7 @@ Writable:
 Service:
   Host: localhost
   Port: 59900
-  StartupMsg: Configuration from config provider
+  StartupMsg: CONFIG BY EXAMPLE PROVIDER
 
 MessageBus:
   # Host: localhost # uncomment when running from command-line in hybrid mode
