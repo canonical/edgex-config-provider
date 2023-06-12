@@ -13,10 +13,15 @@ Writable:
 Service:
   Host: localhost
   Port: 59900
-  StartupMsg: Configuration from config provider
+  StartupMsg: CONFIG BY EXAMPLE PROVIDER
 
 MessageBus:
   # Host: localhost # uncomment when running from command-line in hybrid mode
   Optional:
     ClientId: device-virtual
+
+Device:
+  # These have common values (currently), but must be here for service local env overrides to apply when customized
+  ProfilesDir: "./res/profiles"
+  DevicesDir: "./res/devices"
 

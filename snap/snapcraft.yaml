@@ -1,5 +1,5 @@
 name: edgex-config-provider-example
-base: core20
+base: core22
 
 version: "2.3"
 summary: Example EdgeX snaps config provider
@@ -85,7 +85,7 @@ parts:
     # For example. to take config files from a git repository, i.e. the upstream repo:
     # source: https://github.com/edgexfoundry/device-virtual-go.git
     override-build: |
-      TARGET=$SNAPCRAFT_PART_INSTALL/device-virtual
+      TARGET=$CRAFT_PART_INSTALL/device-virtual
 
       mkdir -p $TARGET
       cp -vr res $TARGET/res
