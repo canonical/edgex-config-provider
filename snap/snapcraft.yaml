@@ -1,13 +1,17 @@
 name: edgex-config-provider-example
 base: core22
 
-version: "2.3"
+version: git
 summary: Example EdgeX snaps config provider
 description: |
   This is an example snap to provide configuration files to EdgeX service snaps.
 
   For source code and details, refer to:  
   https://github.com/canonical/edgex-config-provider 
+  
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 
 grade: stable
 confinement: strict
